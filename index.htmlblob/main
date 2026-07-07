@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy Bedroom</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+        }
+
+        /* The Bedroom Scene */
+        .room {
+            position: relative;
+            width: 500px;
+            height: 400px;
+            background-color: #2e2a47;
+            border-bottom: 20px solid #4a3b32; /* Floor */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Window showing the night sky */
+        .window {
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            width: 100px;
+            height: 120px;
+            background: linear-gradient(#0f172a, #1e1b4b);
+            border: 6px solid #e2e8f0;
+            border-radius: 4px;
+        }
+        
+        .window::before {
+            content: "⭐";
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 12px;
+        }
+
+        /* Cozy Bed */
+        .bed {
+            position: absolute;
+            bottom: 0;
+            right: 30px;
+            width: 220px;
+            height: 100px;
+        }
+
+        .headboard {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 15px;
+            height: 120px;
+            background-color: #854d0e;
+            border-radius: 4px;
+        }
+
+        .mattress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 205px;
+            height: 60px;
+            background-color: #9333ea; /* Purple blanket */
+            border-radius: 6px 6px 0 0;
+        }
+
+        .pillow {
+            position: absolute;
+            bottom: 60px;
+            right: 15px;
+            width: 45px;
+            height: 25px;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+
+        /* Bedside Table and Lamp */
+        .table {
+            position: absolute;
+            bottom: 0;
+            left: 200px;
+            width: 60px;
+            height: 70px;
+            background-color: #a16207;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .lamp {
+            position: absolute;
+            bottom: 70px;
+            left: 215px;
+            width: 30px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .lamp-shade {
+            width: 30px;
+            height: 25px;
+            background-color: #fef08a;
+            border-radius: 10px 10px 0 0;
+            transition: background 0.3s;
+        }
+
+        .lamp-base {
+            width: 8px;
+            height: 15px;
+            background-color: #475569;
+            margin: 0 auto;
+        }
+
+        /* Light glow overlay toggle */
+        .light-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(253, 224, 71, 0.15);
+            pointer-events: none;
+            display: block;
+        }
+
+        .room.lights-off .light-glow {
+            display: none;
+        }
+        
+        .room.lights-off .lamp-shade {
+            background-color: #64748b;
+        }
+
+        p {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="room" id="bedroom">
+    <div class="light-glow" id="glow"></div>
+    <div class="window"></div>
+    
+    <div class="table"></div>
+    <div class="lamp" onclick="toggleLight()">
+        <div class="lamp-shade"></div>
+        <div class="lamp-base"></div>
+    </div>
+
+    <div class="bed">
+        <div class="mattress"></div>
+        <div class="pillow"></div>
+        <div class="headboard"></div>
+    </div>
+
+    <p>💡 Click the lamp to toggle the lights!</p>
+</div>
+
+<script>
+    function toggleLight() {
+        const room = document.getElementById('bedroom');
+        room.classList.toggle('lights-off');
+    }
+</script>
+
+</body>
+</html>
