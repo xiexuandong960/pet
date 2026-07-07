@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bedtime Quest</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a2e;
+            color: #e2e2e2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .game-container {
+            background-color: #16213e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 { color: #0f3460; background: #e94560; padding: 10px; border-radius: 8px; margin-top: 0; }
+        .task-list { text-align: left; margin: 20px 0; padding: 0; list-style: none; }
+        .task { padding: 10px; margin: 5px 0; background: #0f3460; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        .task:hover { background: #1f4068; }
+        .done { background: #28a745 !important; text-decoration: line-through; opacity: 0.7; }
+        #message { margin-top: 20px; font-weight: bold; min-height: 40px; color: #f9a825; }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>🌟 Bedtime Quest 🌟</h1>
+    <p>Click each task to complete it and get ready for bed!</p>
+    
+    <ul class="task-list">
+        <li class="task" id="brush" onclick="completeTask('brush', '🪥 Squeeze... scrub, scrub! Your teeth are clean!')">🪥 Brush your teeth</li>
+        <li class="task" id="toys" onclick="completeTask('toys', '📦 Picking up blocks... The room looks great!')">🧸 Put toys away</li>
+        <li class="task" id="pajamas" onclick="completeTask('pajamas', '👕 Buttoning up... you put on cozy pajamas!')">👕 Put on pajamas</li>
+        <li class="task" id="story" onclick="completeTask('story', '📚 You read a magical story. Getting sleepy...')">📖 Read a bedtime story</li>
+    </ul>
+
+    <div id="message">Your mission: Complete all tasks!</div>
+</div>
+
+<script>
+    const completed = { brush: false, toys: false, pajamas: false, story: false };
+
+    function completeTask(id, text) {
+        if (completed[id]) return;
+        
+        completed[id] = true;
+        document.getElementById(id).classList.add('done');
+        document.getElementById('message').innerText = text;
+        
+        // Check if all tasks are done
+        if (Object.values(completed).every(status => status === true)) {
+            setTimeout(() => {
+                document.getElementById('message').innerHTML = "🎉 QUEST COMPLETE! 🎉<br>Goodnight! 😴💤";
+            }, 1000);
+        }
+    }
+</script>
+
+</body>
+</html>
